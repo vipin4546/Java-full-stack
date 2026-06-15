@@ -1,8 +1,6 @@
 package com.vipin.expense_tracker.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 
 import java.time.LocalDate;
@@ -15,7 +13,13 @@ public class Expenses {
     private String title;
     private Double amount;
     private String category;
+
     private LocalDate expenseDate;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
 
     public void setId(Long id) {
         this.id = id;
@@ -55,5 +59,13 @@ public class Expenses {
 
     public LocalDate getExpenseDate() {
         return expenseDate;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
     }
 }
